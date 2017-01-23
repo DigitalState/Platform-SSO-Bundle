@@ -5,6 +5,7 @@ services:
         arguments:
             - @oro_user.manager
             - @oro_config.global
+            - @event_dispatcher
     ds.sso.oauth.user.provider:
         parent: ds.sso.oauth.user.provider.abstract
         class: Ds\Bundle\SSOBundle\Security\Core\User\OAuthUserProvider

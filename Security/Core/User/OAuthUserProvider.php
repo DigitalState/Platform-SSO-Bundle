@@ -4,6 +4,7 @@ namespace Ds\Bundle\SSOBundle\Security\Core\User;
 
 use Oro\Bundle\UserBundle\Entity\UserManager;
 use Oro\Bundle\ConfigBundle\Config\ConfigManager;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Ds\Bundle\SSOBundle\Collection\OAuthUserProviderCollection;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use LogicException;
@@ -23,11 +24,12 @@ class OAuthUserProvider extends AbstractOAuthUserProvider
      *
      * @param \Oro\Bundle\UserBundle\Entity\UserManager $userManager
      * @param \Oro\Bundle\ConfigBundle\Config\ConfigManager $configManager
+     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher
      * @param \Ds\Bundle\SSOBundle\Collection\OAuthUserProviderCollection $oauthUserProviderCollection
      */
-    public function __construct(UserManager $userManager, ConfigManager $configManager, OAuthUserProviderCollection $oauthUserProviderCollection)
+    public function __construct(UserManager $userManager, ConfigManager $configManager, EventDispatcherInterface $dispatcher, OAuthUserProviderCollection $oauthUserProviderCollection)
     {
-        parent::__construct($userManager, $configManager);
+        parent::__construct($userManager, $configManager, $dispatcher);
 
         $this->oauthUserProviderCollection = $oauthUserProviderCollection;
     }
