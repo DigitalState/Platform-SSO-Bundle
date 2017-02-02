@@ -33,8 +33,8 @@ class EventPass implements CompilerPassInterface
                 foreach ($tags as $tag) {
                     $method = '__invoke';
 
-                    if (array_key_exists('event', $tag)) {
-                        $method = $tag['event'];
+                    if (array_key_exists('method', $tag)) {
+                        $method = $tag['method'];
                     }
 
                     $definition->addMethodCall('addListener', [ $event, [ new Reference($id), $method ] ]);
