@@ -4,7 +4,7 @@ namespace Ds\Bundle\SSOBundle\Event\SSO\User;
 
 use Symfony\Component\EventDispatcher\Event;
 use Oro\Bundle\UserBundle\Entity\User;
-use HWI\Bundle\OAuthBundle\OAuth\ResourceOwnerInterface;
+use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 
 /**
  * Class CreatedEvent
@@ -34,18 +34,18 @@ class CreatedEvent extends Event
     # endregion
 
     /**
-     * @var \HWI\Bundle\OAuthBundle\OAuth\ResourceOwnerInterface
+     * @var \HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface
      */
-    protected $resourceOwner; # region accessors
+    protected $response; # region accessors
 
     /**
-     * Get resource owner
+     * Get user response
      *
-     * @return \HWI\Bundle\OAuthBundle\OAuth\ResourceOwnerInterface
+     * @return \HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface
      */
-    public function getResourceOwner()
+    public function getResponse()
     {
-        return $this->resourceOwner;
+        return $this->response;
     }
 
     # endregion
@@ -54,11 +54,11 @@ class CreatedEvent extends Event
      * Constructor
      *
      * @param \Oro\Bundle\UserBundle\Entity\User $user
-     * @param \HWI\Bundle\OAuthBundle\OAuth\ResourceOwnerInterface $resourceOwner
+     * @param \HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface $response
      */
-    public function __construct(User $user, ResourceOwnerInterface $resourceOwner)
+    public function __construct(User $user, UserResponseInterface $response)
     {
         $this->user = $user;
-        $this->resourceOwner = $resourceOwner;
+        $this->response = $response;
     }
 }
